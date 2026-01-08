@@ -26,16 +26,25 @@ export function PWAInstall() {
 
     const handleInstall = async () => {
         if (!installPrompt) {
-            toast.info("To install on iOS: Tap 'Share' and then 'Add to Home Screen'. For Android, wait for the browser prompt.");
+            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+            if (isIOS) {
+                toast.info("To install on iOS: Tap the 'Share' icon (square with arrow) and select 'Add to Home Screen'.");
+            } else {
+                toast.info("Browser prompt not ready yet. You can also install manually: Tap the 3 dots (⋮) in your browser menu and select 'Install app' or 'Add to Home screen'.");
+            }
             return;
         }
 
-        installPrompt.prompt();
-        const { outcome } = await installPrompt.userChoice;
-
-        if (outcome === 'accepted') {
-            setInstallPrompt(null);
-            toast.success("Thank you for installing SABR OS!");
+        try {
+            installPrompt.prompt();
+            const { outcome } = await installPrompt.userChoice;
+            if (outcome === 'accepted') {
+                setInstallPrompt(null);
+                toast.success("Thank you for installing SABR OS!");
+            }
+        } catch (err) {
+            console.error('Install error:', err);
+            toast.error("An error occurred during installation. Please try again or use the browser menu.");
         }
     };
 
@@ -44,7 +53,7 @@ export function PWAInstall() {
     // Detection for mobile devices
     const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
-    // As per user request: Only show on mobile, never on desktop/laptop
+    // Always show on mobile to provide either the prompt or the "manual" guide
     if (!isMobile) return null;
 
     return (
