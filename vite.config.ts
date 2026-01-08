@@ -15,7 +15,7 @@ export default defineConfig(({ mode }) => ({
     mode === "development" && componentTagger(),
     VitePWA({
       registerType: "autoUpdate",
-      includeAssets: ["favicon.ico", "robots.txt"],
+      includeAssets: ["favicon.ico", "robots.txt", "pwa-192x192.png", "pwa-512x512.png"],
       manifest: {
         name: "SABR OS - Islamic Life Operating System",
         short_name: "SABR OS",
@@ -31,13 +31,19 @@ export default defineConfig(({ mode }) => ({
         icons: [
           {
             src: "pwa-192x192.png",
-            sizes: "192x192 512x512 1024x1024",
+            sizes: "192x192",
             type: "image/png",
             purpose: "any"
           },
           {
             src: "pwa-512x512.png",
-            sizes: "192x192 512x512 1024x1024",
+            sizes: "512x512",
+            type: "image/png",
+            purpose: "any"
+          },
+          {
+            src: "pwa-512x512.png",
+            sizes: "512x512",
             type: "image/png",
             purpose: "maskable"
           }
@@ -45,14 +51,14 @@ export default defineConfig(({ mode }) => ({
         screenshots: [
           {
             src: "pwa-512x512.png",
-            sizes: "1024x1024",
+            sizes: "512x512",
             type: "image/png",
             form_factor: "wide",
             label: "SABR OS Dashboard"
           },
           {
             src: "pwa-512x512.png",
-            sizes: "1024x1024",
+            sizes: "512x512",
             type: "image/png",
             form_factor: "narrow",
             label: "SABR OS Mobile"
@@ -62,12 +68,12 @@ export default defineConfig(({ mode }) => ({
           {
             name: "Tasks",
             url: "/tasks",
-            icons: [{ src: "pwa-192x192.png", sizes: "1024x1024" }]
+            icons: [{ src: "pwa-192x192.png", sizes: "192x192" }]
           },
           {
             name: "Ibadat Hub",
             url: "/ibadat",
-            icons: [{ src: "pwa-192x192.png", sizes: "1024x1024" }]
+            icons: [{ src: "pwa-192x192.png", sizes: "192x192" }]
           }
         ]
       },
