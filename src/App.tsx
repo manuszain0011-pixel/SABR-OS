@@ -40,7 +40,7 @@ const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <ThemeProvider defaultTheme="dark" storageKey="sabr-os-theme">
+    <ThemeProvider defaultTheme="light" storageKey="sabr-os-theme">
       <TooltipProvider>
         <AuthProvider>
           <AppProvider>

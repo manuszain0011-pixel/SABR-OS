@@ -41,7 +41,23 @@ export default function Auth() {
       }
     });
 
-    return () => subscription.unsubscribe();
+    // Force light mode on auth page
+    const root = window.document.documentElement;
+    const isDark = root.classList.contains('dark');
+
+    root.classList.remove('dark');
+    root.classList.add('light');
+    root.style.colorScheme = 'light';
+
+    return () => {
+      subscription.unsubscribe();
+      // Restore previous theme state when leaving auth
+      root.classList.remove('light');
+      if (isDark) {
+        root.classList.add('dark');
+        root.style.colorScheme = 'dark';
+      }
+    };
   }, [navigate]);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -109,7 +125,7 @@ export default function Auth() {
       <div className="hidden lg:flex lg:w-1/2 relative overflow-hidden">
         <div className="absolute inset-0 gradient-green" />
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PGNpcmNsZSBjeD0iMzAiIGN5PSIzMCIgcj0iMiIvPjwvZz48L2c+PC9zdmc+')] opacity-40" />
-        
+
         <div className="relative z-10 flex flex-col justify-center px-16 xl:px-24">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -117,8 +133,8 @@ export default function Auth() {
             transition={{ duration: 0.6 }}
           >
             <div className="flex items-center gap-3 mb-8">
-              <div className="w-14 h-14 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center">
-                <span className="text-white font-bold text-2xl">S</span>
+              <div className="w-14 h-14 flex items-center justify-center">
+                <img src="/SABR-LOGO.png" alt="SABR OS Logo" className="w-full h-full object-contain" />
               </div>
               <div>
                 <span className="font-bold text-3xl text-white">SABR</span>
@@ -132,7 +148,7 @@ export default function Auth() {
             </h1>
 
             <p className="text-xl text-white/80 leading-relaxed mb-10 max-w-md">
-              Organize your spiritual growth, goals, finances, and everything 
+              Organize your spiritual growth, goals, finances, and everything
               that matters — all in one beautiful dashboard.
             </p>
 
@@ -165,8 +181,8 @@ export default function Auth() {
         >
           {/* Mobile Logo */}
           <div className="lg:hidden flex items-center gap-3 mb-10 justify-center">
-            <div className="w-12 h-12 rounded-xl gradient-green flex items-center justify-center">
-              <span className="text-primary-foreground font-bold text-xl">S</span>
+            <div className="w-12 h-12 flex items-center justify-center">
+              <img src="/SABR-LOGO.png" alt="SABR OS Logo" className="w-full h-full object-contain" />
             </div>
             <div>
               <span className="font-bold text-2xl text-foreground">SABR</span>
@@ -179,8 +195,8 @@ export default function Auth() {
               {isLogin ? "Welcome Back" : "Create Account"}
             </h2>
             <p className="text-muted-foreground">
-              {isLogin 
-                ? "Sign in to continue to your dashboard" 
+              {isLogin
+                ? "Sign in to continue to your dashboard"
                 : "Start your journey with SABR OS"}
             </p>
           </div>

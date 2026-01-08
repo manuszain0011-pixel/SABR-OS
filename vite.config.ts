@@ -15,7 +15,7 @@ export default defineConfig(({ mode }) => ({
     mode === "development" && componentTagger(),
     VitePWA({
       registerType: "autoUpdate",
-      includeAssets: ["favicon.ico", "robots.txt", "pwa-192x192.png", "pwa-512x512.png"],
+      includeAssets: ["favicon.ico", "robots.txt", "pwa-192x192.png", "pwa-512x512.png", "SABR-LOGO.png"],
       manifest: {
         name: "SABR OS - Islamic Life Operating System",
         short_name: "SABR OS",

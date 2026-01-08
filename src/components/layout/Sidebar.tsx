@@ -92,8 +92,8 @@ export function Sidebar({ onNavigate, className }: SidebarProps) {
         {/* Logo Section */}
         <div className="flex h-32 flex-col justify-center px-10 border-b border-[#0B5B42]/5">
           <div className="flex items-center gap-4">
-            <div className="flex h-12 w-12 items-center justify-center rounded-[1.25rem] bg-[#0B5B42] shadow-xl shadow-[#0B5B42]/20">
-              <BookOpen className="h-6 w-6 text-white" />
+            <div className="flex h-12 w-12 items-center justify-center">
+              <img src="/SABR-LOGO.png" alt="SABR OS Logo" className="h-full w-full object-contain" />
             </div>
             <div>
               <h1 className="text-2xl font-black tracking-tighter text-[#0B5B42] dark:text-white">SABR<span className="text-[#C5A059]">OS</span></h1>

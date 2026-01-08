@@ -46,6 +46,7 @@ import {
 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
+import { PWAInstall } from "@/components/PWAInstall";
 
 const fadeIn = {
   initial: { opacity: 0, y: 24 },
@@ -79,13 +80,29 @@ export default function Landing() {
       }
     });
 
-    return () => subscription.unsubscribe();
+    // Force light mode on landing page
+    const root = window.document.documentElement;
+    const isDark = root.classList.contains('dark');
+
+    root.classList.remove('dark');
+    root.classList.add('light');
+    root.style.colorScheme = 'light';
+
+    return () => {
+      subscription.unsubscribe();
+      // Restore previous theme state when leaving landing
+      root.classList.remove('light');
+      if (isDark) {
+        root.classList.add('dark');
+        root.style.colorScheme = 'dark';
+      }
+    };
   }, [navigate]);
 
   return (
     <div className="min-h-screen bg-background overflow-x-hidden">
       {/* Navigation */}
-      <motion.header 
+      <motion.header
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
@@ -94,8 +111,8 @@ export default function Landing() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 lg:h-20">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl gradient-green flex items-center justify-center shadow-lg">
-                <span className="text-primary-foreground font-bold text-lg">S</span>
+              <div className="w-10 h-10 flex items-center justify-center">
+                <img src="/SABR-LOGO.png" alt="SABR OS Logo" className="w-full h-full object-contain" />
               </div>
               <div>
                 <span className="font-bold text-xl text-foreground">SABR</span>
@@ -109,7 +126,8 @@ export default function Landing() {
               <a href="#how-it-works" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">How It Works</a>
               <a href="#faq" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">FAQ</a>
             </nav>
-            <div className="flex items-center">
+            <div className="flex items-center gap-4">
+              <PWAInstall />
               <Link to="/auth">
                 <Button variant="outline" className="border-primary/30 hover:bg-primary/5">
                   Sign In
@@ -130,14 +148,14 @@ export default function Landing() {
         </div>
 
         <div className="max-w-7xl mx-auto relative">
-          <motion.div 
+          <motion.div
             initial="initial"
             animate="animate"
             variants={staggerContainer}
             className="max-w-4xl mx-auto text-center"
           >
             {/* Badge */}
-            <motion.div 
+            <motion.div
               variants={fadeIn}
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-green-light border border-primary/20 text-primary text-sm font-semibold mb-8"
             >
@@ -146,7 +164,7 @@ export default function Landing() {
             </motion.div>
 
             {/* Main Headline */}
-            <motion.h1 
+            <motion.h1
               variants={fadeIn}
               className="text-4xl sm:text-5xl lg:text-7xl font-bold text-foreground leading-[1.1] mb-8"
             >
@@ -155,27 +173,27 @@ export default function Landing() {
             </motion.h1>
 
             {/* Subheadline */}
-            <motion.p 
+            <motion.p
               variants={fadeIn}
               className="text-xl sm:text-2xl text-muted-foreground max-w-3xl mx-auto mb-12 leading-relaxed"
             >
-              One powerful dashboard to organize your spiritual growth, personal goals, 
-              finances, projects, wellness, and everything that matters. 
+              One powerful dashboard to organize your spiritual growth, personal goals,
+              finances, projects, wellness, and everything that matters.
               Built for Muslims who want to live intentionally.
             </motion.p>
 
             {/* CTA Buttons */}
             <motion.div variants={fadeIn} className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
-              <Link to="/auth?mode=signup">
-                <Button size="lg" className="gradient-green text-primary-foreground px-10 h-14 text-lg shadow-xl hover:shadow-2xl transition-all">
-                  Start For Free
-                  <ArrowRight className="ml-3 h-5 w-5" />
-                </Button>
-              </Link>
-              <a href="#what-is-sabr">
-                <Button size="lg" variant="outline" className="px-10 h-14 text-lg border-2">
+              <Button asChild size="lg" className="gradient-green text-primary-foreground w-full sm:w-auto px-6 sm:px-10 py-4 h-auto text-sm sm:text-base font-bold shadow-xl hover:shadow-2xl transition-all">
+                <Link to="/auth?mode=signup" className="flex items-center justify-center gap-2">
+                  <span>Get Started Now — It's Free</span>
+                  <ArrowRight className="h-4 w-4 sm:h-5 sm:w-5" />
+                </Link>
+              </Button>
+              <a href="#what-is-sabr" className="w-full sm:w-auto">
+                <Button size="lg" variant="outline" className="w-full px-6 sm:px-10 py-4 h-auto text-sm sm:text-base border-2">
                   Learn More
-                  <ChevronDown className="ml-2 h-5 w-5" />
+                  <ChevronDown className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
                 </Button>
               </a>
             </motion.div>
@@ -204,17 +222,17 @@ export default function Landing() {
               </h2>
               <div className="space-y-6 text-lg text-muted-foreground leading-relaxed">
                 <p>
-                  <strong className="text-foreground">SABR OS</strong> is your personal life operating system — a unified platform 
+                  <strong className="text-foreground">SABR OS</strong> is your personal life operating system — a unified platform
                   designed to help you manage every important area of your life from one clean, beautiful interface.
                 </p>
                 <p>
-                  Instead of juggling multiple apps for habits, goals, finances, notes, and spiritual tracking, 
-                  SABR OS brings everything together in one place. It's built specifically for Muslims who want 
+                  Instead of juggling multiple apps for habits, goals, finances, notes, and spiritual tracking,
+                  SABR OS brings everything together in one place. It's built specifically for Muslims who want
                   to excel in both their worldly responsibilities and spiritual growth.
                 </p>
                 <p>
-                  The name <strong className="text-foreground">SABR (صَبْر)</strong> means patience in Arabic — 
-                  reflecting our core philosophy that meaningful transformation comes through consistent, patient 
+                  The name <strong className="text-foreground">SABR (صَبْر)</strong> means patience in Arabic —
+                  reflecting our core philosophy that meaningful transformation comes through consistent, patient
                   effort over time, not quick fixes.
                 </p>
               </div>
@@ -288,12 +306,12 @@ export default function Landing() {
               Life Feels Scattered and Overwhelming
             </h2>
             <p className="text-xl text-muted-foreground">
-              You're trying to grow spiritually, advance your career, manage finances, build habits, 
+              You're trying to grow spiritually, advance your career, manage finances, build habits,
               and maintain relationships — but everything is spread across different apps and notebooks.
             </p>
           </motion.div>
 
-          <motion.div 
+          <motion.div
             initial="initial"
             whileInView="animate"
             viewport={{ once: true }}
@@ -368,13 +386,13 @@ export default function Landing() {
               9 Powerful Modules. One System.
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Each module is carefully designed to help you manage a specific area of life. 
+              Each module is carefully designed to help you manage a specific area of life.
               Together, they form a complete operating system for intentional living.
             </p>
           </motion.div>
 
           {/* Modules Grid */}
-          <motion.div 
+          <motion.div
             initial="initial"
             whileInView="animate"
             viewport={{ once: true }}
@@ -468,7 +486,7 @@ export default function Landing() {
               Built for How You Actually Live
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Every feature is designed to reduce friction and help you stay organized without 
+              Every feature is designed to reduce friction and help you stay organized without
               adding complexity to your life.
             </p>
           </motion.div>
@@ -566,12 +584,12 @@ export default function Landing() {
               Rooted in <span className="text-gradient">Islamic Values</span>
             </h2>
             <p className="text-xl text-muted-foreground">
-              SABR OS is built on principles that align with the Muslim way of life — 
+              SABR OS is built on principles that align with the Muslim way of life —
               balancing worldly success with spiritual growth.
             </p>
           </motion.div>
 
-          <motion.div 
+          <motion.div
             initial="initial"
             whileInView="animate"
             viewport={{ once: true }}
@@ -624,7 +642,7 @@ export default function Landing() {
               How SABR OS Works
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Getting started is simple. In just a few steps, you'll have a complete life management 
+              Getting started is simple. In just a few steps, you'll have a complete life management
               system ready to use.
             </p>
           </motion.div>
@@ -693,7 +711,7 @@ export default function Landing() {
             </h2>
           </motion.div>
 
-          <motion.div 
+          <motion.div
             initial="initial"
             whileInView="animate"
             viewport={{ once: true }}
@@ -830,23 +848,25 @@ export default function Landing() {
             {/* Background */}
             <div className="absolute inset-0 gradient-green opacity-95" />
             <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PGNpcmNsZSBjeD0iMzAiIGN5PSIzMCIgcj0iMiIvPjwvZz48L2c+PC9zdmc+')] opacity-40" />
-            
-            <div className="relative px-8 py-16 sm:px-16 sm:py-24 text-center">
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-primary-foreground mb-6">
-                Ready to Take Control of Your Life?
+
+            <div className="relative px-8 py-20 sm:px-16 sm:py-28 text-center">
+              <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-primary-foreground mb-6 tracking-tight">
+                Design Your Intentional Life.
               </h2>
-              <p className="text-xl text-primary-foreground/80 max-w-2xl mx-auto mb-10">
-                Join thousands of Muslims using SABR OS to organize their lives, 
-                achieve their goals, and grow closer to Allah.
+              <p className="text-xl text-primary-foreground/90 max-w-2xl mx-auto mb-12 leading-relaxed font-medium">
+                Join a global community of mindful Muslims striving for
+                spiritual excellence and worldly success with SABR OS.
               </p>
-              <Link to="/auth?mode=signup">
-                <Button size="lg" variant="secondary" className="px-12 h-14 text-lg font-semibold shadow-xl hover:shadow-2xl transition-all">
-                  Start Using SABR OS — It's Free
-                  <ArrowRight className="ml-3 h-5 w-5" />
+              <div className="flex flex-col sm:flex-row justify-center items-center gap-4 px-4 sm:px-0">
+                <Button asChild size="lg" variant="secondary" className="w-full sm:w-auto min-w-0 px-6 sm:px-12 py-5 h-auto text-sm sm:text-base font-bold shadow-2xl hover:scale-105 active:scale-95 transition-all duration-300">
+                  <Link to="/auth?mode=signup" className="flex items-center justify-center gap-2 whitespace-normal sm:whitespace-nowrap text-center">
+                    <span>Get Started Now — It's Free</span>
+                    <ArrowRight className="h-4 w-4 sm:h-5 sm:w-5 flex-shrink-0" />
+                  </Link>
                 </Button>
-              </Link>
-              <p className="mt-6 text-primary-foreground/60 text-sm">
-                No credit card required. Free forever for core features.
+              </div>
+              <p className="mt-8 text-primary-foreground/70 text-sm font-medium">
+                No credit card required • Free forever core features
               </p>
             </div>
           </motion.div>
@@ -858,15 +878,15 @@ export default function Landing() {
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row items-center justify-between gap-8">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl gradient-green flex items-center justify-center">
-                <span className="text-primary-foreground font-bold text-lg">S</span>
+              <div className="w-10 h-10 flex items-center justify-center">
+                <img src="/SABR-LOGO.png" alt="SABR OS Logo" className="w-full h-full object-contain" />
               </div>
               <div>
                 <span className="font-bold text-xl text-foreground">SABR</span>
                 <span className="font-bold text-xl text-primary"> OS</span>
               </div>
             </div>
-            
+
             <nav className="flex flex-wrap items-center justify-center gap-8">
               <a href="#what-is-sabr" className="text-sm text-muted-foreground hover:text-foreground transition-colors">About</a>
               <a href="#modules" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Modules</a>
