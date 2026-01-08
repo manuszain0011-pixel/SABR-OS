@@ -79,6 +79,7 @@ export default defineConfig(({ mode }) => ({
       },
       workbox: {
         globPatterns: ["**/*.{js,css,html,ico,png,svg,woff2}"],
+        maximumFileSizeToCacheInBytes: 5 * 1024 * 1024, // Increase limit to 5MB for the high-res logo
         runtimeCaching: [
           {
             urlPattern: /^https:\/\/api\.aladhan\.com\/.*/i,
@@ -102,6 +103,9 @@ export default defineConfig(({ mode }) => ({
       },
     }),
   ].filter(Boolean),
+  build: {
+    chunkSizeWarningLimit: 2000, // Increase limit for larger assets
+  },
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
