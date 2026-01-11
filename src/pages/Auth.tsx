@@ -6,8 +6,15 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
-import { Eye, EyeOff, Mail, Lock, ArrowRight, Sparkles } from "lucide-react";
+import { Eye, EyeOff, Mail, Lock, ArrowRight, Sparkles, CheckCircle2 } from "lucide-react";
 import { z } from "zod";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from "@/components/ui/dialog";
 
 const authSchema = z.object({
   email: z.string().email("Please enter a valid email address"),
@@ -22,13 +29,22 @@ export default function Auth() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [showVerificationDialog, setShowVerificationDialog] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
     // Set up auth state listener
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      (event, session) => {
+      async (event, session) => {
         if (session?.user) {
+          // Detect if coming from a verification link
+          const hash = window.location.hash;
+          if (hash && (hash.includes("access_token") || hash.includes("type=signup"))) {
+            toast.success("Email verified successfully! Welcome to SABR OS.", {
+              description: "Your spiritual journey starts now.",
+              duration: 5000,
+            });
+          }
           navigate("/dashboard");
         }
       }
@@ -95,6 +111,8 @@ export default function Auth() {
         }
       } else {
         const redirectUrl = `${window.location.origin}/dashboard`;
+        // Note: window.location.origin will automatically point to your domain (e.g., sabr-os.com) 
+        // when you host this online. No manual change is needed in the code!
         const { error } = await supabase.auth.signUp({
           email,
           password,
@@ -109,7 +127,10 @@ export default function Auth() {
             toast.error(error.message);
           }
         } else {
-          toast.success("Account created! Welcome to SABR OS.");
+          setShowVerificationDialog(true);
+          setIsLogin(true);
+          setPassword("");
+          setConfirmPassword("");
         }
       }
     } catch (error) {
@@ -310,6 +331,29 @@ export default function Auth() {
           </div>
         </motion.div>
       </div>
+
+      <Dialog open={showVerificationDialog} onOpenChange={setShowVerificationDialog}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <div className="mx-auto w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-4">
+              <CheckCircle2 className="w-8 h-8 text-primary" />
+            </div>
+            <DialogTitle className="text-center text-2xl">Verify your email</DialogTitle>
+            <DialogDescription className="text-center text-base pt-2">
+              We've sent a verification link to <span className="font-semibold text-foreground">{email}</span>.
+              Please check your inbox and click the link to activate your account.
+            </DialogDescription>
+          </DialogHeader>
+          <div className="flex justify-center pt-4">
+            <Button
+              onClick={() => setShowVerificationDialog(false)}
+              className="w-full gradient-green"
+            >
+              Back to Login
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

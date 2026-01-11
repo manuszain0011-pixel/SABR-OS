@@ -129,8 +129,8 @@ export default function Notes() {
         </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-4 gap-2">
-          {NOTE_TYPES.slice(0, 4).map((t) => {
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2">
+          {NOTE_TYPES.map((t) => {
             const count = notes.filter((n) => !n.is_archived && (n as any).type === t.value).length;
             return (
               <button
@@ -138,13 +138,13 @@ export default function Notes() {
                 className={cn(
                   'bento-card text-center hover:ring-2 ring-primary/30 transition py-2',
                   filterType === t.value && 'ring-2 ring-primary',
-                  t.value === 'reflection' && '!bg-[#0B5B42] text-white'
+                  t.value === 'reflection' && '!bg-primary text-primary-foreground border-none shadow-md'
                 )}
                 onClick={() => setFilterType((p) => (p === t.value ? 'all' : t.value))}
               >
-                <t.icon className={cn("h-4 w-4 mx-auto mb-1", t.value === 'reflection' ? "text-white/80" : "text-muted-foreground")} />
+                <t.icon className={cn("h-4 w-4 mx-auto mb-1", t.value === 'reflection' ? "text-primary-foreground/90" : "text-muted-foreground")} />
                 <p className="font-bold">{count}</p>
-                <p className={cn("text-[10px]", t.value === 'reflection' ? "text-white/70" : "text-muted-foreground")}>{t.label}</p>
+                <p className={cn("text-[10px]", t.value === 'reflection' ? "text-primary-foreground/80" : "text-muted-foreground")}>{t.label}</p>
               </button>
             );
           })}

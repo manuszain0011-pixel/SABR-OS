@@ -250,7 +250,7 @@ export default function Projects() {
         </div>
       </div>
 
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
         <div className="bento-card">
           <p className="text-sm font-medium text-muted-foreground mb-1">Total</p>
           <p className="text-2xl font-bold">{stats.total}</p>
@@ -259,7 +259,7 @@ export default function Projects() {
           <p className="text-sm font-medium text-muted-foreground mb-1">Active</p>
           <p className="text-2xl font-bold text-gold">{stats.active}</p>
         </div>
-        <div className="bento-card !bg-[#0B5B42] text-white">
+        <div className="bento-card !bg-primary text-primary-foreground border-none shadow-md">
           <p className="text-sm font-medium opacity-80 mb-1">Completed</p>
           <p className="text-2xl font-bold">{stats.completed}</p>
         </div>

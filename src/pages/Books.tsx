@@ -210,7 +210,7 @@ export default function Books() {
         </div>
 
         {/* Stats Row */}
-        <div className="grid grid-cols-4 gap-2">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-2">
           <div className="bento-card py-3 px-1 text-center group cursor-default hover:bg-primary/5 transition-colors">
             <BookOpen className="h-4 w-4 mx-auto mb-1 text-primary" />
             <p className="text-lg font-bold">{stats.total}</p>
@@ -226,10 +226,10 @@ export default function Books() {
             <p className="text-lg font-bold text-primary">{stats.completed}</p>
             <p className="text-[10px] text-muted-foreground uppercase tracking-wider font-semibold">Done</p>
           </div>
-          <div className="bento-card py-3 px-1 text-center group cursor-default bg-primary text-white">
-            <BookMarked className="h-4 w-4 mx-auto mb-1 opacity-80" />
-            <p className="text-lg font-bold">{stats.wantToRead}</p>
-            <p className="text-[10px] opacity-80 uppercase tracking-wider font-semibold">Queued</p>
+          <div className="bento-card py-3 px-1 text-center group cursor-default !bg-primary border-none shadow-md">
+            <BookMarked className="h-4 w-4 mx-auto mb-1 text-primary-foreground opacity-100" />
+            <p className="text-lg font-bold text-primary-foreground">{stats.wantToRead}</p>
+            <p className="text-[10px] text-primary-foreground/90 uppercase tracking-wider font-semibold">Queued</p>
           </div>
         </div>
 

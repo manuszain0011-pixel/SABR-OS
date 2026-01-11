@@ -284,7 +284,7 @@ export default function Tasks() {
           <p className="text-sm font-medium text-muted-foreground mb-1">Overdue</p>
           <p className="text-2xl font-bold text-destructive">{stats.overdue}</p>
         </div>
-        <div className="bento-card !bg-[#0B5B42] text-white">
+        <div className="bento-card !bg-primary text-primary-foreground border-none shadow-md">
           <p className="text-sm font-medium opacity-80 mb-1">Done</p>
           <p className="text-2xl font-bold">{stats.completed}</p>
         </div>

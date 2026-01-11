@@ -166,36 +166,57 @@ export default function Ideas() {
               className={cn(
                 'bento-card text-center hover:ring-2 ring-primary/30 transition',
                 filterCategory === c.value && 'ring-2 ring-primary',
-                c.value === 'observation' && '!bg-[#0B5B42] text-white'
+                c.value === 'observation' && '!bg-primary text-primary-foreground border-none shadow-md'
               )}
               onClick={() => setFilterCategory((p) => (p === c.value ? 'all' : c.value))}
             >
-              <c.icon className={cn("h-5 w-5 mx-auto mb-1", c.value === 'observation' ? "text-white/80" : "text-muted-foreground")} />
+              <c.icon className={cn("h-5 w-5 mx-auto mb-1", c.value === 'observation' ? "text-primary-foreground/90" : "text-muted-foreground")} />
               <p className="text-xl font-bold">{count}</p>
-              <p className={cn("text-[10px]", c.value === 'observation' ? "text-white/70" : "text-muted-foreground")}>{c.label}</p>
+              <p className={cn("text-[10px]", c.value === 'observation' ? "text-primary-foreground/80" : "text-muted-foreground")}>{c.label}</p>
             </button>
           );
         })}
       </div>
 
       {/* Filters */}
-      <div className="flex flex-wrap gap-3 items-center">
-        <div className="relative flex-1 min-w-[200px]">
+      <div className="flex flex-col sm:flex-row gap-4 items-center">
+        <div className="relative flex-1 w-full dev-detached-tabs !p-0">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-          <Input placeholder="Search ideas..." value={search} onChange={(e) => setSearch(e.target.value)} className="pl-9" />
+          <Input
+            placeholder="Search ideas..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            className="pl-10 border-none bg-transparent focus-visible:ring-0 h-11"
+          />
         </div>
-        {allTags.length > 0 && (
-          <Select value={filterTag} onValueChange={setFilterTag}>
-            <SelectTrigger className="w-36"><Tag className="h-4 w-4 mr-2" /><SelectValue placeholder="Tag" /></SelectTrigger>
-            <SelectContent>
-              <SelectItem value="all">All Tags</SelectItem>
-              {allTags.map((t) => (<SelectItem key={t} value={t}>{t}</SelectItem>))}
-            </SelectContent>
-          </Select>
-        )}
-        <Button variant={showFavoritesOnly ? 'default' : 'outline'} size="sm" onClick={() => setShowFavoritesOnly((p) => !p)}>
-          <Star className={cn('h-4 w-4', showFavoritesOnly && 'fill-current')} />
-        </Button>
+
+        <div className="flex gap-4 w-full sm:w-auto">
+          {allTags.length > 0 && (
+            <div className="dev-detached-tabs !p-0 flex-1 sm:flex-none">
+              <Select value={filterTag} onValueChange={setFilterTag}>
+                <SelectTrigger className="w-full sm:w-40 border-none bg-transparent focus:ring-0 h-11 px-4">
+                  <Tag className="h-4 w-4 mr-2" />
+                  <SelectValue placeholder="Tag" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">All Tags</SelectItem>
+                  {allTags.map((t) => (<SelectItem key={t} value={t}>{t}</SelectItem>))}
+                </SelectContent>
+              </Select>
+            </div>
+          )}
+
+          <div className="dev-detached-tabs !p-0 flex-none">
+            <Button
+              variant="ghost"
+              size="icon"
+              className={cn("h-11 w-11 rounded-2xl transition-all", showFavoritesOnly && "text-gold")}
+              onClick={() => setShowFavoritesOnly((p) => !p)}
+            >
+              <Star className={cn('h-5 w-5', showFavoritesOnly && 'fill-current')} />
+            </Button>
+          </div>
+        </div>
       </div>
 
       {/* Ideas Grid */}

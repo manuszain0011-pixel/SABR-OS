@@ -395,10 +395,10 @@ export default function Wellness() {
       </div>
 
       <Tabs defaultValue="habits" className="space-y-6">
-        <TabsList className="grid w-full max-w-lg grid-cols-3">
-          <TabsTrigger value="habits"><Target className="h-4 w-4 mr-2" />Habits</TabsTrigger>
-          <TabsTrigger value="journal"><BookOpen className="h-4 w-4 mr-2" />Journal</TabsTrigger>
-          <TabsTrigger value="insights"><BarChart3 className="h-4 w-4 mr-2" />Insights</TabsTrigger>
+        <TabsList className="tabs-list-neumorphic grid w-full max-w-lg grid-cols-3 h-auto gap-1">
+          <TabsTrigger value="habits" className="tab-trigger-neumorphic"><Target className="h-4 w-4 mr-2" />Habits</TabsTrigger>
+          <TabsTrigger value="journal" className="tab-trigger-neumorphic"><BookOpen className="h-4 w-4 mr-2" />Journal</TabsTrigger>
+          <TabsTrigger value="insights" className="tab-trigger-neumorphic"><BarChart3 className="h-4 w-4 mr-2" />Insights</TabsTrigger>
         </TabsList>
 
         {/* HABITS TAB */}

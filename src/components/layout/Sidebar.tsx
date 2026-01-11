@@ -90,7 +90,7 @@ export function Sidebar({ onNavigate, className }: SidebarProps) {
     <aside className={cn("flex flex-col h-full border-r border-[#0B5B42]/10 bg-white dark:bg-[#031510] shadow-2xl", className)}>
       <div className="flex h-full flex-col">
         {/* Logo Section */}
-        <div className="flex h-32 flex-col justify-center px-10 border-b border-[#0B5B42]/5">
+        <div className="flex h-24 flex-col justify-center px-10 border-b border-[#0B5B42]/5">
           <div className="flex items-center gap-4">
             <div className="flex h-12 w-12 items-center justify-center">
               <img src="/SABR-LOGO.png" alt="SABR OS Logo" className="h-full w-full object-contain" />
@@ -103,15 +103,15 @@ export function Sidebar({ onNavigate, className }: SidebarProps) {
         </div>
 
         {/* Navigation */}
-        <ScrollArea className="flex-1 px-6 py-10 scrollbar-none">
+        <ScrollArea type="always" className="flex-1 px-6 pt-6 pb-2 scrollbar-thin">
           <nav className="space-y-12">
             {navGroups.map((group) => (
               <div key={group.title} className="space-y-4">
                 <div className="flex items-center gap-3 px-4">
-                  <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#0B5B42]/30 dark:text-white/20">
+                  <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#0B5B42]/80 dark:text-white/60">
                     {group.title}
                   </span>
-                  <div className="h-[1px] flex-1 bg-[#0B5B42]/5 dark:bg-white/5" />
+                  <div className="h-[1px] flex-1 bg-[#0B5B42]/20 dark:bg-white/20" />
                 </div>
 
                 <div className="space-y-2">
@@ -126,12 +126,12 @@ export function Sidebar({ onNavigate, className }: SidebarProps) {
                           "group flex items-center gap-4 px-4 py-3.5 rounded-2xl transition-all duration-300",
                           isActive
                             ? "bg-[#0B5B42] text-white shadow-lg shadow-[#0B5B42]/20 translate-x-1"
-                            : "text-[#0B5B42]/60 hover:text-[#0B5B42] hover:bg-[#0B5B42]/5 dark:text-white/40 dark:hover:text-white dark:hover:bg-white/5"
+                            : "text-[#0B5B42]/90 hover:text-[#0B5B42] hover:bg-[#0B5B42]/5 dark:text-white/80 dark:hover:text-white dark:hover:bg-white/5"
                         )}
                       >
                         <item.icon className={cn(
                           "h-5 w-5 transition-transform group-hover:scale-110",
-                          isActive ? "text-[#C5A059]" : "text-[#0B5B42]/40 dark:text-white/20"
+                          isActive ? "text-[#C5A059]" : "text-[#0B5B42]/70 dark:text-white/40"
                         )} />
                         <span className="text-sm font-black tracking-wide uppercase">{item.label}</span>
                       </NavLink>
@@ -144,7 +144,7 @@ export function Sidebar({ onNavigate, className }: SidebarProps) {
         </ScrollArea>
 
         {/* Footer Actions */}
-        <div className="p-8 space-y-4 border-t border-[#0B5B42]/5 bg-[#0B5B42]/[0.02] dark:bg-white/[0.01]">
+        <div className="p-3 space-y-1.5 border-t border-[#0B5B42]/5 bg-[#0B5B42]/[0.02] dark:bg-white/[0.01]">
           <button
             onClick={toggleTheme}
             className="flex w-full items-center gap-4 rounded-2xl px-4 py-3.5 text-sm font-black uppercase tracking-wide text-[#0B5B42]/60 hover:bg-[#0B5B42]/5 dark:text-white/40 dark:hover:bg-white/5 transition-all outline-none"

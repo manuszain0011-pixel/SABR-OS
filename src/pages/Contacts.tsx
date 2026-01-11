@@ -134,27 +134,27 @@ export default function Contacts() {
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-5 gap-3">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
         {CONTACT_TYPES.map(type => {
           const count = contacts.filter(c => c.relationship === type.value).length;
           return (
             <div
               key={type.value}
               className={cn(
-                "bento-card text-center",
-                type.value === 'other' && "!bg-[#0B5B42] text-white"
+                "bento-card text-center py-4 hover:ring-2 ring-primary/30 transition",
+                type.value === 'other' && "!bg-primary text-primary-foreground border-none shadow-md"
               )}
             >
-              <type.icon className={cn("h-5 w-5 mx-auto mb-2", type.value === 'other' ? "text-white/80" : "text-muted-foreground")} />
-              <p className="text-2xl font-bold">{count}</p>
-              <p className={cn("text-xs", type.value === 'other' ? "text-white/70" : "text-muted-foreground")}>{type.label}</p>
+              <type.icon className={cn("h-5 w-5 mx-auto mb-2", type.value === 'other' ? "text-primary-foreground/90" : "text-muted-foreground")} />
+              <p className="text-2xl font-black">{count}</p>
+              <p className={cn("text-[10px] font-bold uppercase tracking-widest", type.value === 'other' ? "text-primary-foreground/70" : "text-muted-foreground")}>{type.label}</p>
             </div>
           );
         })}
       </div>
 
       {/* Filters */}
-      <div className="flex gap-3">
+      <div className="flex flex-col sm:flex-row gap-4">
         <div className="relative flex-1 dev-detached-tabs !p-0">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
           <Input
@@ -164,15 +164,19 @@ export default function Contacts() {
             className="pl-10 border-none bg-transparent focus-visible:ring-0 h-11"
           />
         </div>
-        <Select value={filterType} onValueChange={setFilterType}>
-          <SelectTrigger className="w-40"><SelectValue placeholder="Type" /></SelectTrigger>
-          <SelectContent>
-            <SelectItem value="all">All Types</SelectItem>
-            {CONTACT_TYPES.map(t => (
-              <SelectItem key={t.value} value={t.value}>{t.label}</SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
+        <div className="dev-detached-tabs !p-0">
+          <Select value={filterType} onValueChange={setFilterType}>
+            <SelectTrigger className="w-full sm:w-48 border-none bg-transparent focus:ring-0 h-11 px-4">
+              <SelectValue placeholder="Filter by Type" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="all">All Contacts</SelectItem>
+              {CONTACT_TYPES.map(t => (
+                <SelectItem key={t.value} value={t.value}>{t.label}</SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
       </div>
 
       {/* Contacts Grid */}

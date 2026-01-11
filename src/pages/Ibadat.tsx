@@ -392,15 +392,13 @@ export default function Ibadat() {
       </div>
 
       <Tabs defaultValue="prayers" className="space-y-4">
-        <div className="w-full overflow-x-auto pb-2 scrollbar-none">
-          <TabsList className="flex w-max md:grid md:w-full md:grid-cols-5 max-w-2xl min-w-full">
-            <TabsTrigger value="prayers" className="px-6 md:px-2"><Moon className="h-4 w-4 mr-1" />Prayers</TabsTrigger>
-            <TabsTrigger value="quran" className="px-6 md:px-2"><BookOpen className="h-4 w-4 mr-1" />Quran</TabsTrigger>
-            <TabsTrigger value="dhikr" className="px-6 md:px-2"><Sparkles className="h-4 w-4 mr-1" />Dhikr</TabsTrigger>
-            <TabsTrigger value="fasting" className="px-6 md:px-2"><Utensils className="h-4 w-4 mr-1" />Fasting</TabsTrigger>
-            <TabsTrigger value="duas" className="px-6 md:px-2"><Hand className="h-4 w-4 mr-1" />Duas</TabsTrigger>
-          </TabsList>
-        </div>
+        <TabsList className="tabs-list-neumorphic grid w-full grid-cols-2 md:grid-cols-3 lg:grid-cols-5 h-auto gap-1">
+          <TabsTrigger value="prayers" className="tab-trigger-neumorphic"><Moon className="h-4 w-4 mr-1" />Prayers</TabsTrigger>
+          <TabsTrigger value="quran" className="tab-trigger-neumorphic"><BookOpen className="h-4 w-4 mr-1" />Quran</TabsTrigger>
+          <TabsTrigger value="dhikr" className="tab-trigger-neumorphic"><Sparkles className="h-4 w-4 mr-1" />Dhikr</TabsTrigger>
+          <TabsTrigger value="fasting" className="tab-trigger-neumorphic"><Utensils className="h-4 w-4 mr-1" />Fasting</TabsTrigger>
+          <TabsTrigger value="duas" className="tab-trigger-neumorphic"><Hand className="h-4 w-4 mr-1" />Duas</TabsTrigger>
+        </TabsList>
 
         {/* PRAYERS TAB */}
         <TabsContent value="prayers" className="space-y-4">

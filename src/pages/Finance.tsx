@@ -513,7 +513,7 @@ export default function Finance() {
       </div>
 
       <Tabs defaultValue="transactions" className="space-y-4">
-        <TabsList className="tabs-list-neumorphic grid w-full grid-cols-6 max-w-3xl h-auto">
+        <TabsList className="tabs-list-neumorphic grid w-full grid-cols-2 md:grid-cols-3 lg:grid-cols-6 h-auto gap-1">
           <TabsTrigger value="transactions" className="tab-trigger-neumorphic"><Receipt className="h-4 w-4 mr-1" />Flux</TabsTrigger>
           <TabsTrigger value="budgets" className="tab-trigger-neumorphic"><PieChart className="h-4 w-4 mr-1" />Budgets</TabsTrigger>
           <TabsTrigger value="subscriptions" className="tab-trigger-neumorphic"><Repeat className="h-4 w-4 mr-1" />Subs</TabsTrigger>

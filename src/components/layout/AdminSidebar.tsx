@@ -71,7 +71,7 @@ export function AdminSidebar({ onNavigate }: SidebarProps) {
         <aside className="fixed left-0 top-0 z-40 h-screen w-72 border-r border-red-900/10 bg-white dark:bg-[#1a0505] shadow-2xl">
             <div className="flex h-full flex-col">
                 {/* Logo Section */}
-                <div className="flex h-32 flex-col justify-center px-10 border-b border-red-900/5">
+                <div className="flex h-24 flex-col justify-center px-10 border-b border-red-900/5">
                     <div className="flex items-center gap-4">
                         <div className="flex h-12 w-12 items-center justify-center rounded-[1.25rem] bg-red-900 shadow-xl shadow-red-900/20">
                             <Settings className="h-6 w-6 text-white" />
@@ -84,15 +84,15 @@ export function AdminSidebar({ onNavigate }: SidebarProps) {
                 </div>
 
                 {/* Navigation */}
-                <ScrollArea className="flex-1 px-6 py-10 scrollbar-none">
+                <ScrollArea type="always" className="flex-1 px-6 pt-6 pb-2 scrollbar-thin">
                     <nav className="space-y-12">
                         {navGroups.map((group) => (
                             <div key={group.title} className="space-y-4">
                                 <div className="flex items-center gap-3 px-4">
-                                    <span className="text-[10px] font-black uppercase tracking-[0.4em] text-red-900/30 dark:text-white/20">
+                                    <span className="text-[10px] font-black uppercase tracking-[0.4em] text-red-900/60 dark:text-white/50">
                                         {group.title}
                                     </span>
-                                    <div className="h-[1px] flex-1 bg-red-900/5 dark:bg-white/5" />
+                                    <div className="h-[1px] flex-1 bg-red-900/10 dark:bg-white/10" />
                                 </div>
 
                                 <div className="space-y-2">
@@ -107,12 +107,12 @@ export function AdminSidebar({ onNavigate }: SidebarProps) {
                                                     "group flex items-center gap-4 px-4 py-3.5 rounded-2xl transition-all duration-300",
                                                     isActive
                                                         ? "bg-red-900 text-white shadow-lg shadow-red-900/20 translate-x-1"
-                                                        : "text-red-900/60 hover:text-red-900 hover:bg-red-900/5 dark:text-white/40 dark:hover:text-white dark:hover:bg-white/5"
+                                                        : "text-red-900/80 hover:text-red-900 hover:bg-red-900/5 dark:text-white/60 dark:hover:text-white dark:hover:bg-white/5"
                                                 )}
                                             >
                                                 <item.icon className={cn(
                                                     "h-5 w-5 transition-transform group-hover:scale-110",
-                                                    isActive ? "text-red-200" : "text-red-900/40 dark:text-white/20"
+                                                    isActive ? "text-red-200" : "text-red-900/50 dark:text-white/30"
                                                 )} />
                                                 <span className="text-sm font-black tracking-wide uppercase">{item.label}</span>
                                             </NavLink>
@@ -125,7 +125,7 @@ export function AdminSidebar({ onNavigate }: SidebarProps) {
                 </ScrollArea>
 
                 {/* Footer Actions */}
-                <div className="p-8 space-y-4 border-t border-red-900/5 bg-red-900/[0.02] dark:bg-white/[0.01]">
+                <div className="p-3 space-y-1.5 border-t border-red-900/5 bg-red-900/[0.02] dark:bg-white/[0.01]">
                     <button
                         onClick={toggleTheme}
                         className="flex w-full items-center gap-4 rounded-2xl px-4 py-3.5 text-sm font-black uppercase tracking-wide text-red-900/60 hover:bg-red-900/5 dark:text-white/40 dark:hover:bg-white/5 transition-all outline-none"

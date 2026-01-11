@@ -340,8 +340,21 @@
   }
 
   .scrollbar-thin::-webkit-scrollbar-thumb {
-    background: hsl(var(--border));
-    border-radius: 2px;
+    background: hsl(var(--primary) / 0.2);
+    border-radius: 6px;
+    transition: background 0.2s;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--primary) / 0.4);
+  }
+
+  .dark .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: hsl(0 0% 100% / 0.1);
+  }
+
+  .dark .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    background: hsl(0 0% 100% / 0.2);
   }
 
   .section-title {
@@ -357,7 +370,7 @@
   }
 
   .tabs-list-neumorphic {
-    @apply neumorphic p-2 flex gap-1 bg-background/50;
+    @apply neumorphic p-1 bg-background/50 h-auto w-full grid !important;
     border: none !important;
     border-radius: 1.5rem !important;
   }
@@ -381,7 +394,7 @@
   }
 
   .tab-trigger-neumorphic {
-    @apply rounded-[1.25rem] px-4 py-2 text-xs font-black uppercase tracking-widest transition-all duration-300;
+    @apply rounded-[1.25rem] px-1 sm:px-4 py-2 text-[10px] sm:text-xs font-black uppercase tracking-widest transition-all duration-300 whitespace-normal text-center leading-tight;
   }
 
   .tab-trigger-neumorphic[data-state="active"] {

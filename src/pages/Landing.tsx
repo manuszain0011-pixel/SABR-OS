@@ -100,7 +100,7 @@ export default function Landing() {
   }, [navigate]);
 
   return (
-    <div className="min-h-screen bg-background overflow-x-hidden">
+    <div className="min-h-screen bg-background overflow-x-hidden app-3d-root">
       {/* Navigation */}
       <motion.header
         initial={{ opacity: 0, y: -20 }}
@@ -276,7 +276,7 @@ export default function Landing() {
                   description: "Built-in daily, weekly, and monthly review templates to reflect, plan, and stay aligned with your purpose."
                 }
               ].map((item, index) => (
-                <div key={index} className="flex gap-5 p-6 rounded-2xl bg-card border border-border hover:border-primary/30 transition-colors">
+                <div key={index} className="bento-card-interactive flex gap-5 p-6 shadow-sm">
                   <div className="w-14 h-14 rounded-xl gradient-green flex items-center justify-center flex-shrink-0">
                     <item.icon className="w-7 h-7 text-primary-foreground" />
                   </div>
@@ -316,7 +316,7 @@ export default function Landing() {
             whileInView="animate"
             viewport={{ once: true }}
             variants={staggerContainer}
-            className="grid md:grid-cols-2 lg:grid-cols-4 gap-6"
+            className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6"
           >
             {[
               {
@@ -343,7 +343,7 @@ export default function Landing() {
               <motion.div
                 key={index}
                 variants={fadeIn}
-                className="p-8 rounded-2xl bg-card border border-border text-center"
+                className="bento-card text-center"
               >
                 <div className="w-16 h-16 rounded-2xl bg-destructive/10 flex items-center justify-center mx-auto mb-6">
                   <item.icon className="w-8 h-8 text-destructive" />
@@ -397,7 +397,7 @@ export default function Landing() {
             whileInView="animate"
             viewport={{ once: true }}
             variants={staggerContainer}
-            className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+            className="grid grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8"
           >
             {[
               {
@@ -458,7 +458,7 @@ export default function Landing() {
               <motion.div
                 key={index}
                 variants={fadeIn}
-                className="group p-8 rounded-2xl bg-card border border-border hover:border-primary/40 hover:shadow-xl transition-all duration-300"
+                className="bento-card-interactive shadow-lg h-full"
               >
                 <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${module.color} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
                   <module.icon className="w-8 h-8 text-primary-foreground" />
@@ -517,7 +517,7 @@ export default function Landing() {
                   description: "Built-in daily check-ins, weekly reviews, and monthly reflections. Stay aligned with your purpose and continuously improve your approach."
                 }
               ].map((feature, index) => (
-                <div key={index} className="flex gap-6">
+                <div key={index} className="bento-card-interactive flex gap-6 p-6 shadow-sm">
                   <div className="w-14 h-14 rounded-xl bg-green-light flex items-center justify-center flex-shrink-0">
                     <feature.icon className="w-7 h-7 text-primary" />
                   </div>
@@ -554,7 +554,7 @@ export default function Landing() {
                   description: "Your personal data stays private. No selling information to advertisers, no invasive tracking. Just a tool that works for you, not against you."
                 }
               ].map((feature, index) => (
-                <div key={index} className="flex gap-6">
+                <div key={index} className="bento-card-interactive flex gap-6 p-6 shadow-sm">
                   <div className="w-14 h-14 rounded-xl bg-gold-light flex items-center justify-center flex-shrink-0">
                     <feature.icon className="w-7 h-7 text-accent" />
                   </div>
@@ -616,7 +616,7 @@ export default function Landing() {
               <motion.div
                 key={index}
                 variants={fadeIn}
-                className="text-center p-10 rounded-3xl bg-card border border-border"
+                className="bento-card text-center"
               >
                 <div className="text-5xl font-bold text-primary mb-4 font-serif">{value.arabic}</div>
                 <h3 className="font-bold text-xl text-foreground mb-4">{value.english}</h3>
@@ -681,7 +681,7 @@ export default function Landing() {
                 {index < 3 && (
                   <div className="hidden lg:block absolute top-12 left-full w-full h-0.5 bg-gradient-to-r from-primary/40 to-transparent -translate-x-8" />
                 )}
-                <div className="relative p-8 rounded-2xl border border-border bg-card h-full">
+                <div className="relative bento-card h-full">
                   <div className="text-6xl font-bold text-primary/10 absolute top-4 right-6">{item.step}</div>
                   <div className="w-12 h-12 rounded-full gradient-green flex items-center justify-center mb-6">
                     <span className="text-primary-foreground font-bold">{item.step}</span>
@@ -747,7 +747,7 @@ export default function Landing() {
               <motion.div
                 key={index}
                 variants={fadeIn}
-                className="p-8 rounded-2xl bg-card border border-border"
+                className="bento-card"
               >
                 <div className="w-12 h-12 rounded-full bg-green-light flex items-center justify-center mb-6">
                   <Check className="w-6 h-6 text-primary" />
@@ -815,7 +815,7 @@ export default function Landing() {
             ].map((faq, index) => (
               <div
                 key={index}
-                className="border border-border rounded-2xl overflow-hidden bg-card"
+                className="bento-card p-0 overflow-hidden mb-4"
               >
                 <button
                   onClick={() => setOpenFaq(openFaq === index ? null : index)}

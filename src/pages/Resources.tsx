@@ -116,31 +116,30 @@ export default function Resources() {
         </Dialog>
       </div>
 
-      {/* Stats */}
-      <div className="grid grid-cols-3 md:grid-cols-6 gap-2">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-2">
         {RESOURCE_TYPES.map((t) => {
           const count = resources.filter((r) => r.type === t.value).length;
           return (
             <button
               key={t.value}
               className={cn(
-                'bento-card text-center py-2 hover:ring-2 ring-primary/30 transition',
+                'bento-card text-center py-3 hover:ring-2 ring-primary/30 transition',
                 filterType === t.value && 'ring-2 ring-primary',
-                t.value === 'website' && '!bg-[#0B5B42] text-white'
+                t.value === 'website' && '!bg-primary text-primary-foreground border-none shadow-md'
               )}
               onClick={() => setFilterType((p) => (p === t.value ? 'all' : t.value))}
             >
-              <t.icon className={cn("h-4 w-4 mx-auto mb-1", t.value === 'website' ? "text-white/80" : "text-muted-foreground")} />
-              <p className="font-bold">{count}</p>
-              <p className={cn("text-[10px]", t.value === 'website' ? "text-white/70" : "text-muted-foreground")}>{t.label}</p>
+              <t.icon className={cn("h-4 w-4 mx-auto mb-1", t.value === 'website' ? "text-primary-foreground/90" : "text-muted-foreground")} />
+              <p className="text-lg font-black">{count}</p>
+              <p className={cn("text-[9px] font-bold uppercase tracking-wider", t.value === 'website' ? "text-primary-foreground/80" : "text-muted-foreground")}>{t.label}</p>
             </button>
           );
         })}
       </div>
 
       {/* Filters */}
-      <div className="flex flex-wrap gap-2 items-center">
-        <div className="relative flex-1 min-w-[180px] dev-detached-tabs !p-0">
+      <div className="flex flex-col sm:flex-row gap-4 items-center">
+        <div className="relative flex-1 w-full dev-detached-tabs !p-0">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
           <Input
             placeholder="Search resources..."
@@ -149,13 +148,31 @@ export default function Resources() {
             className="pl-10 border-none bg-transparent focus-visible:ring-0 h-11"
           />
         </div>
-        {allTags.length > 0 && (
-          <Select value={filterTag} onValueChange={setFilterTag}>
-            <SelectTrigger className="w-32"><Tag className="h-4 w-4 mr-2" /><SelectValue placeholder="Tag" /></SelectTrigger>
-            <SelectContent><SelectItem value="all">All Tags</SelectItem>{allTags.map((t) => (<SelectItem key={t} value={t}>{t}</SelectItem>))}</SelectContent>
-          </Select>
-        )}
-        <Button variant={showFavoritesOnly ? 'default' : 'outline'} size="sm" onClick={() => setShowFavoritesOnly((p) => !p)}><Star className={cn('h-4 w-4', showFavoritesOnly && 'fill-current')} /></Button>
+
+        <div className="flex gap-4 w-full sm:w-auto">
+          {allTags.length > 0 && (
+            <div className="dev-detached-tabs !p-0 flex-1 sm:flex-none">
+              <Select value={filterTag} onValueChange={setFilterTag}>
+                <SelectTrigger className="w-full sm:w-36 border-none bg-transparent focus:ring-0 h-11 px-4">
+                  <Tag className="h-4 w-4 mr-2" />
+                  <SelectValue placeholder="Tag" />
+                </SelectTrigger>
+                <SelectContent><SelectItem value="all">All Tags</SelectItem>{allTags.map((t) => (<SelectItem key={t} value={t}>{t}</SelectItem>))}</SelectContent>
+              </Select>
+            </div>
+          )}
+
+          <div className="dev-detached-tabs !p-0 flex-none">
+            <Button
+              variant="ghost"
+              size="icon"
+              className={cn("h-11 w-11 rounded-2xl transition-all", showFavoritesOnly && "text-gold")}
+              onClick={() => setShowFavoritesOnly((p) => !p)}
+            >
+              <Star className={cn('h-5 w-5', showFavoritesOnly && 'fill-current')} />
+            </Button>
+          </div>
+        </div>
       </div>
 
       {/* Resources List */}
