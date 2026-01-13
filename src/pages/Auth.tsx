@@ -156,7 +156,7 @@ export default function Auth() {
           >
             <div className="flex items-center gap-3 mb-8">
               <div className="w-14 h-14 flex items-center justify-center">
-                <Logo size="xl" variant="dark" />
+                <Logo size="xl" variant="original" />
               </div>
               <div>
                 <span className="font-bold text-3xl text-white">SABR</span>
