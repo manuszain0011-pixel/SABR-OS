@@ -9,6 +9,8 @@ import { MainLayout } from "@/components/layout/MainLayout";
 import Landing from "./pages/Landing";
 import Auth from "./pages/Auth";
 import Dashboard from "./pages/Dashboard";
+import DailyReview from "./pages/DailyReview";
+import LifeHeatmap from "./pages/LifeHeatmap";
 import Ibadat from "./pages/Ibadat";
 import Tasks from "./pages/Tasks";
 import Finance from "./pages/Finance";
@@ -56,6 +58,8 @@ const App = () => (
                 <Route element={<MainLayout />}>
                   <Route path="/dashboard" element={<Dashboard />} />
                   <Route path="/profile" element={<Profile />} />
+                  <Route path="/daily-review" element={<DailyReview />} />
+                  <Route path="/life-heatmap" element={<LifeHeatmap />} />
                   <Route path="/ibadat" element={<Ibadat />} />
                   <Route path="/tasks" element={<Tasks />} />
                   <Route path="/finance" element={<Finance />} />

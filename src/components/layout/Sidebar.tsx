@@ -1,7 +1,8 @@
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import {
   LayoutDashboard, Moon, Sun, CheckSquare, Wallet, Settings, BookOpen,
-  Target, FolderKanban, Lightbulb, FileText, Heart, BookMarked, Users, UserRound, LogOut, Zap
+  Target, FolderKanban, Lightbulb, FileText, Heart, BookMarked, Users, UserRound, LogOut, Zap,
+  Calendar, BarChart3
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { ScrollArea } from '@/components/ui/scroll-area';
@@ -16,6 +17,13 @@ const navGroups = [
     items: [
       { path: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
       { path: '/profile', label: 'Profile & Areas', icon: UserRound },
+    ],
+  },
+  {
+    title: 'Review',
+    items: [
+      { path: '/daily-review', label: 'Daily Review', icon: Calendar },
+      { path: '/life-heatmap', label: 'Life Heatmap', icon: BarChart3 },
     ],
   },
   {
