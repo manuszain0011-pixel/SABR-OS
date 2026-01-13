@@ -4,12 +4,12 @@ import { format, startOfYear, endOfYear, eachDayOfInterval, isSameDay, subYears,
 import { ChevronLeft, ChevronRight, TrendingUp, Calendar, Flame, Target } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { supabase } from '@/integrations/supabase/client';
-import { useApp } from '@/context/AppContext';
+import { useAuth } from '@/context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import type { HeatmapDay } from '@/types/dailyReview';
 
 export default function LifeHeatmap() {
-    const { user } = useApp();
+    const { user } = useAuth();
     const navigate = useNavigate();
     const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
     const [heatmapData, setHeatmapData] = useState<Map<string, HeatmapDay>>(new Map());
@@ -26,6 +26,8 @@ export default function LifeHeatmap() {
     useEffect(() => {
         if (user) {
             fetchYearData();
+        } else {
+            setLoading(false);
         }
     }, [user, selectedYear]);
 

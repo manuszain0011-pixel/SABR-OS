@@ -9,12 +9,12 @@ import {
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { supabase } from '@/integrations/supabase/client';
-import { useApp } from '@/context/AppContext';
+import { useAuth } from '@/context/AuthContext';
 import { toast } from 'sonner';
 import type { DailyActivitySummary, DailyReflection } from '@/types/dailyReview';
 
 export default function DailyReview() {
-    const { user } = useApp();
+    const { user } = useAuth();
     const [selectedDate, setSelectedDate] = useState(new Date());
     const [summary, setSummary] = useState<DailyActivitySummary | null>(null);
     const [reflection, setReflection] = useState<DailyReflection | null>(null);
@@ -29,6 +29,8 @@ export default function DailyReview() {
     useEffect(() => {
         if (user) {
             fetchDayData();
+        } else {
+            setLoading(false);
         }
     }, [user, selectedDate]);
 
