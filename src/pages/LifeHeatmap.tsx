@@ -301,12 +301,13 @@ export default function LifeHeatmap() {
                             <div className="w-8 h-8 border-4 border-primary/30 border-t-primary rounded-full animate-spin" />
                         </div>
                     ) : (
-                        <div className="overflow-x-auto -mx-4 px-4 md:mx-0 md:px-0">
-                            <div className="inline-grid grid-cols-12 gap-2 md:gap-4 min-w-max">
+                        <div className="w-full">
+                            {/* Mobile & Tablet: Stacked months in responsive grid */}
+                            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-12 gap-3 md:gap-4">
                                 {Object.entries(monthsData).map(([month, days], monthIndex) => (
-                                    <div key={month} className="space-y-1 md:space-y-2">
-                                        <p className="text-[10px] md:text-xs font-semibold text-muted-foreground text-center">{month}</p>
-                                        <div className="grid grid-cols-7 gap-[2px] md:gap-1">
+                                    <div key={month} className="space-y-2">
+                                        <p className="text-xs font-semibold text-muted-foreground text-center">{month}</p>
+                                        <div className="grid grid-cols-7 gap-1">
                                             {days.map((day, dayIndex) => {
                                                 const dateStr = format(day, 'yyyy-MM-dd');
                                                 const dayData = heatmapData.get(dateStr);
@@ -318,10 +319,9 @@ export default function LifeHeatmap() {
                                                         key={dayIndex}
                                                         onClick={() => handleDayClick(day)}
                                                         className={`
-                              w-2 h-2 md:w-3 md:h-3 rounded-[2px] md:rounded-sm 
-                              transition-all hover:scale-150 hover:z-10
+                              w-3 h-3 rounded-sm transition-all hover:scale-150 hover:z-10
                               ${getScoreColor(score)} ${getScoreIntensity(score)}
-                              ${isToday ? 'ring-1 md:ring-2 ring-primary ring-offset-[1px] md:ring-offset-1' : ''}
+                              ${isToday ? 'ring-2 ring-primary ring-offset-1' : ''}
                             `}
                                                         title={`${format(day, 'MMM d, yyyy')} - Score: ${score}`}
                                                     />
@@ -335,16 +335,16 @@ export default function LifeHeatmap() {
                     )}
 
                     {/* Legend */}
-                    <div className="flex items-center justify-center gap-3 md:gap-6 mt-6 md:mt-8 pt-4 md:pt-6 border-t border-border">
-                        <span className="text-[10px] md:text-xs text-muted-foreground">Less</span>
-                        <div className="flex gap-[2px] md:gap-1">
+                    <div className="flex items-center justify-center gap-4 md:gap-6 mt-6 md:mt-8 pt-4 md:pt-6 border-t border-border">
+                        <span className="text-xs text-muted-foreground">Less</span>
+                        <div className="flex gap-1">
                             <div className="w-3 h-3 md:w-4 md:h-4 rounded-sm bg-muted/30" />
                             <div className="w-3 h-3 md:w-4 md:h-4 rounded-sm bg-red-500 opacity-30" />
                             <div className="w-3 h-3 md:w-4 md:h-4 rounded-sm bg-orange-500 opacity-50" />
                             <div className="w-3 h-3 md:w-4 md:h-4 rounded-sm bg-yellow-500 opacity-75" />
                             <div className="w-3 h-3 md:w-4 md:h-4 rounded-sm bg-green-500 opacity-100" />
                         </div>
-                        <span className="text-[10px] md:text-xs text-muted-foreground">More</span>
+                        <span className="text-xs text-muted-foreground">More</span>
                     </div>
                 </motion.div>
 
