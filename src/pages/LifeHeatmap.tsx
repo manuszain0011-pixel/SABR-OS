@@ -39,6 +39,14 @@ export default function LifeHeatmap() {
             const yearStart = format(startOfYear(new Date(selectedYear, 0, 1)), 'yyyy-MM-dd');
             const yearEnd = format(endOfYear(new Date(selectedYear, 0, 1)), 'yyyy-MM-dd');
 
+            // Aggregate data for the year (only if current year to avoid long wait)
+            if (selectedYear === new Date().getFullYear()) {
+                await supabase.rpc('aggregate_all_users_data', {
+                    p_start_date: yearStart,
+                    p_end_date: yearEnd
+                });
+            }
+
             const { data, error } = await supabase
                 .from('daily_activity_summary')
                 .select('date, overall_score')

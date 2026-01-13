@@ -39,7 +39,13 @@ export default function DailyReview() {
 
         setLoading(true);
         try {
-            // Fetch summary
+            // First, aggregate the latest data for this date
+            await supabase.rpc('aggregate_daily_data', {
+                p_user_id: user.id,
+                p_date: dateStr
+            });
+
+            // Then fetch the summary
             const { data: summaryData } = await supabase
                 .from('daily_activity_summary')
                 .select('*')
