@@ -1,0 +1,54 @@
+{
+    "name": "SABR OS - Islamic Productivity Operating System",
+    "short_name": "SABR OS",
+    "description": "A comprehensive Islamic productivity platform balancing Deen and Dunya",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#0f172a",
+    "theme_color": "#667eea",
+    "orientation": "portrait-primary",
+    "icons": [
+        {
+            "src": "/logo-icon.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "/logo-icon.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "/logo-icon.png",
+            "sizes": "144x144",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "/logo-icon.png",
+            "sizes": "96x96",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "/favicon.png",
+            "sizes": "64x64",
+            "type": "image/png",
+            "purpose": "any"
+        }
+    ],
+    "categories": [
+        "productivity",
+        "lifestyle",
+        "education"
+    ],
+    "screenshots": [
+        {
+            "src": "/logo-icon.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}

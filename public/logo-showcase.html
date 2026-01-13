@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SABR OS - Logo Variations Showcase</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: white;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .subtitle {
+            text-align: center;
+            color: rgba(255,255,255,0.9);
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .logo-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .logo-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 80px rgba(0,0,0,0.4);
+        }
+
+        .logo-card.dark {
+            background: #1a202c;
+        }
+
+        .logo-card.colored {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .logo-card.gradient {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .logo-preview {
+            width: 100%;
+            height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            border-radius: 12px;
+            background: rgba(0,0,0,0.03);
+        }
+
+        .logo-card.dark .logo-preview {
+            background: rgba(255,255,255,0.05);
+        }
+
+        .logo-preview img {
+            max-width: 200px;
+            max-height: 200px;
+            object-fit: contain;
+        }
+
+        .logo-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #2d3748;
+        }
+
+        .logo-card.dark .logo-info h3,
+        .logo-card.colored .logo-info h3,
+        .logo-card.gradient .logo-info h3 {
+            color: white;
+        }
+
+        .logo-info p {
+            color: #718096;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .logo-card.dark .logo-info p,
+        .logo-card.colored .logo-info p,
+        .logo-card.gradient .logo-info p {
+            color: rgba(255,255,255,0.8);
+        }
+
+        .use-cases {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 15px;
+        }
+
+        .tag {
+            background: #edf2f7;
+            color: #4a5568;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .logo-card.dark .tag {
+            background: rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.9);
+        }
+
+        .logo-card.colored .tag,
+        .logo-card.gradient .tag {
+            background: rgba(255,255,255,0.2);
+            color: white;
+        }
+
+        .download-section {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            margin-top: 40px;
+        }
+
+        .download-section h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: #2d3748;
+        }
+
+        .download-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .download-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 12px;
+            text-decoration: none;
+            text-align: center;
+            font-weight: 600;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        }
+
+        .specs {
+            background: #f7fafc;
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 15px;
+        }
+
+        .specs h4 {
+            font-size: 1rem;
+            margin-bottom: 10px;
+            color: #2d3748;
+        }
+
+        .specs ul {
+            list-style: none;
+            color: #4a5568;
+            font-size: 0.9rem;
+        }
+
+        .specs li {
+            padding: 5px 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .specs li:last-child {
+            border-bottom: none;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🌙 SABR OS Logo Variations</h1>
+        <p class="subtitle">Complete branding package with multiple color variations</p>
+
+        <div class="grid">
+            <!-- Original Logo -->
+            <div class="logo-card">
+                <div class="logo-preview">
+                    <img src="logo-final.png" alt="SABR OS Original Logo">
+                </div>
+                <div class="logo-info">
+                    <h3>Original Gold</h3>
+                    <p>The primary brand logo with elegant gold/bronze gradient. Perfect for main branding.</p>
+                    <div class="use-cases">
+                        <span class="tag">Primary Logo</span>
+                        <span class="tag">Landing Page</span>
+                        <span class="tag">Marketing</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- White Version -->
+            <div class="logo-card dark">
+                <div class="logo-preview">
+                    <img src="logo-white.png" alt="SABR OS White Logo">
+                </div>
+                <div class="logo-info">
+                    <h3>White Version</h3>
+                    <p>Clean white monochrome for dark backgrounds and headers.</p>
+                    <div class="use-cases">
+                        <span class="tag">Dark Mode</span>
+                        <span class="tag">Headers</span>
+                        <span class="tag">Footers</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navy Version -->
+            <div class="logo-card">
+                <div class="logo-preview">
+                    <img src="logo-navy.png" alt="SABR OS Navy Logo">
+                </div>
+                <div class="logo-info">
+                    <h3>Navy Blue</h3>
+                    <p>Professional dark navy for light backgrounds and corporate use.</p>
+                    <div class="use-cases">
+                        <span class="tag">Light Mode</span>
+                        <span class="tag">Documents</span>
+                        <span class="tag">Professional</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Black Version -->
+            <div class="logo-card">
+                <div class="logo-preview">
+                    <img src="logo-black.png" alt="SABR OS Black Logo">
+                </div>
+                <div class="logo-info">
+                    <h3>Black Monochrome</h3>
+                    <p>Classic black version for print materials and minimalist designs.</p>
+                    <div class="use-cases">
+                        <span class="tag">Print</span>
+                        <span class="tag">Monochrome</span>
+                        <span class="tag">Minimal</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bright Gold Version -->
+            <div class="logo-card dark">
+                <div class="logo-preview">
+                    <img src="logo-gold.png" alt="SABR OS Bright Gold Logo">
+                </div>
+                <div class="logo-info">
+                    <h3>Bright Gold</h3>
+                    <p>Luminous, vibrant gold with premium metallic effect.</p>
+                    <div class="use-cases">
+                        <span class="tag">Premium</span>
+                        <span class="tag">Special Events</span>
+                        <span class="tag">Ramadan</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Icon Version -->
+            <div class="logo-card colored">
+                <div class="logo-preview">
+                    <img src="logo-icon.png" alt="SABR OS App Icon">
+                </div>
+                <div class="logo-info">
+                    <h3>App Icon (512x512)</h3>
+                    <p>Square format optimized for PWA icons and app stores.</p>
+                    <div class="use-cases">
+                        <span class="tag">PWA Icon</span>
+                        <span class="tag">App Stores</span>
+                        <span class="tag">Mobile</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Technical Specifications -->
+        <div class="download-section">
+            <h2>📋 Technical Specifications</h2>
+            <div class="specs">
+                <h4>File Information</h4>
+                <ul>
+                    <li><strong>Format:</strong> PNG with transparency</li>
+                    <li><strong>Color Space:</strong> RGB</li>
+                    <li><strong>Original Logo:</strong> logo-final.png</li>
+                    <li><strong>Icon Size:</strong> 512x512px (logo-icon.png)</li>
+                    <li><strong>Favicon:</strong> favicon.png (optimized for browser tabs)</li>
+                </ul>
+            </div>
+
+            <div class="specs" style="margin-top: 20px;">
+                <h4>Usage Guidelines</h4>
+                <ul>
+                    <li><strong>Light Backgrounds:</strong> Use logo-navy.png or logo-black.png</li>
+                    <li><strong>Dark Backgrounds:</strong> Use logo-white.png or logo-gold.png</li>
+                    <li><strong>Colored Backgrounds:</strong> Use logo-white.png</li>
+                    <li><strong>PWA Manifest:</strong> Use logo-icon.png for all icon sizes</li>
+                    <li><strong>Browser Favicon:</strong> Use favicon.png in HTML head</li>
+                </ul>
+            </div>
+
+            <div class="specs" style="margin-top: 20px;">
+                <h4>Available Files</h4>
+                <ul>
+                    <li>logo-final.png - Original gold/bronze version</li>
+                    <li>logo-white.png - White monochrome</li>
+                    <li>logo-navy.png - Navy blue version</li>
+                    <li>logo-black.png - Black monochrome</li>
+                    <li>logo-gold.png - Bright gold version</li>
+                    <li>logo-icon.png - Square app icon (512x512)</li>
+                    <li>favicon.png - Browser favicon</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

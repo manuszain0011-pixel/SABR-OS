@@ -8,6 +8,7 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
 import { useTheme } from '@/components/ThemeProvider';
+import { Logo } from '@/components/Logo';
 
 const navGroups = [
   {
@@ -93,7 +94,7 @@ export function Sidebar({ onNavigate, className }: SidebarProps) {
         <div className="flex h-24 flex-col justify-center px-10 border-b border-[#0B5B42]/5">
           <div className="flex items-center gap-4">
             <div className="flex h-12 w-12 items-center justify-center">
-              <img src="/SABR-LOGO.png" alt="SABR OS Logo" className="h-full w-full object-contain" />
+              <Logo size="lg" />
             </div>
             <div>
               <h1 className="text-2xl font-black tracking-tighter text-[#0B5B42] dark:text-white">SABR<span className="text-[#C5A059]">OS</span></h1>

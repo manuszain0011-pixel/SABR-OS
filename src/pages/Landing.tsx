@@ -47,6 +47,7 @@ import {
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { PWAInstall } from "@/components/PWAInstall";
+import { Logo } from "@/components/Logo";
 
 const fadeIn = {
   initial: { opacity: 0, y: 24 },
@@ -112,7 +113,7 @@ export default function Landing() {
           <div className="flex items-center justify-between h-16 lg:h-20">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 flex items-center justify-center">
-                <img src="/SABR-LOGO.png" alt="SABR OS Logo" className="w-full h-full object-contain" />
+                <Logo size="md" variant="original" />
               </div>
               <div>
                 <span className="font-bold text-xl text-foreground">SABR</span>
@@ -879,7 +880,7 @@ export default function Landing() {
           <div className="flex flex-col md:flex-row items-center justify-between gap-8">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 flex items-center justify-center">
-                <img src="/SABR-LOGO.png" alt="SABR OS Logo" className="w-full h-full object-contain" />
+                <Logo size="md" variant="original" />
               </div>
               <div>
                 <span className="font-bold text-xl text-foreground">SABR</span>

@@ -15,6 +15,7 @@ import {
   DialogTitle,
   DialogDescription,
 } from "@/components/ui/dialog";
+import { Logo } from "@/components/Logo";
 
 const authSchema = z.object({
   email: z.string().email("Please enter a valid email address"),
@@ -155,7 +156,7 @@ export default function Auth() {
           >
             <div className="flex items-center gap-3 mb-8">
               <div className="w-14 h-14 flex items-center justify-center">
-                <img src="/SABR-LOGO.png" alt="SABR OS Logo" className="w-full h-full object-contain" />
+                <Logo size="xl" variant="dark" />
               </div>
               <div>
                 <span className="font-bold text-3xl text-white">SABR</span>
@@ -203,7 +204,7 @@ export default function Auth() {
           {/* Mobile Logo */}
           <div className="lg:hidden flex items-center gap-3 mb-10 justify-center">
             <div className="w-12 h-12 flex items-center justify-center">
-              <img src="/SABR-LOGO.png" alt="SABR OS Logo" className="w-full h-full object-contain" />
+              <Logo size="lg" variant="original" />
             </div>
             <div>
               <span className="font-bold text-2xl text-foreground">SABR</span>
